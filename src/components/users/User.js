@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const User = () => {
+
   const [user, setUser] = useState({
     name: "",
     username: "",
@@ -10,14 +11,20 @@ const User = () => {
     phone: "",
     webiste: ""
   });
+
+  //to access the parameters of the current route 
   const { id } = useParams();
+
   useEffect(() => {
     loadUser();
   }, []);
+
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3000/users/${id}`);
+    //const res = await axios.get(`http://localhost:3000/users/${id}`);
+    const res = await axios.get('http://localhost:3000/users/'+ id);
     setUser(res.data);
   };
+
   return (
     <div className="container py-4">
       <Link className="btn btn-primary" to="/">

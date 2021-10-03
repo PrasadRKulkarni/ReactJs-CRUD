@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
+//For calling API
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  //To maintain the state of data
   const [users, setUser] = useState([]);
 
+  //After page refresh load users from api
   useEffect(() => {
     loadUsers();
   }, []);
 
+  //await will wait till data is received and will not proceed to next line execution
   const loadUsers = async () => {
     const result = await axios.get("http://localhost:3000/users");
+    console.log(result);
     setUser(result.data.reverse());
   };
 
@@ -41,19 +46,19 @@ const Home = () => {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link className="btn btn-primary mr-2" to={`/users/${user.id}`}>
+                  <Link className="btn btn-primary mr-2" to={'/users/' + user.id}>
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mr-2"
-                    to={`/users/edit/${user.id}`}
+                    to={'/users/edit/' + user.id}
                   >
                     Edit
                   </Link>
                   <Link
                      to={``}
                      className="btn btn-danger"
-                    onClick={() => deleteUser(user.id)}
+                     onClick={() => deleteUser(user.id)}
                   >
                     Delete
                   </Link>

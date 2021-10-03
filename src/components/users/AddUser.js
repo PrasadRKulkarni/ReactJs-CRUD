@@ -12,16 +12,21 @@ const AddUser = () => {
     website: ""
   });
 
+  //Array Destructing
   const { name, username, email, phone, website } = user;
+
   const onInputChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
     await axios.post("http://localhost:3000/users", user);
+    //Redirect to Home page after insert... So history used
     history.push("/");
   };
+
   return (
     <div className="container">
       <div className="w-75 mx-auto shadow p-5">
