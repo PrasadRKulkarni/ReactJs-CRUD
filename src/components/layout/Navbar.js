@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
-        <Link className="navbar-brand" href="/">
+        <Link className="navbar-brand" href="/" to=''>
           Recat User
         </Link>
         <button

@@ -10,12 +10,12 @@ const Home = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
+    const result = await axios.get("http://localhost:3000/users");
     setUser(result.data.reverse());
   };
 
   const deleteUser = async id => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
+    await axios.delete(`http://localhost:3000/users/${id}`);
     loadUsers();
   };
 
@@ -23,8 +23,8 @@ const Home = () => {
     <div className="container">
       <div className="py-4">
         <h1>Home Page</h1>
-        <table class="table border shadow">
-          <thead class="thead-dark">
+        <table className="table border shadow">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
@@ -35,23 +35,24 @@ const Home = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr>
+              <tr key={index + 1}>
                 <th scope="row">{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link class="btn btn-primary mr-2" to={`/users/${user.id}`}>
+                  <Link className="btn btn-primary mr-2" to={`/users/${user.id}`}>
                     View
                   </Link>
                   <Link
-                    class="btn btn-outline-primary mr-2"
+                    className="btn btn-outline-primary mr-2"
                     to={`/users/edit/${user.id}`}
                   >
                     Edit
                   </Link>
                   <Link
-                    class="btn btn-danger"
+                     to={``}
+                     className="btn btn-danger"
                     onClick={() => deleteUser(user.id)}
                   >
                     Delete
